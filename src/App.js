@@ -12,7 +12,7 @@ export default function App() {
         <div className="title-container">
           <h1 className="title">Scrap Metals</h1>
           <h2 className="subtitle">
-            Please excuse us as we build the gallery. In the meantime, please
+            Please excuse me as I set up my gallery. In the meantime, please
             follow me on Instagram for updates!
           </h2>
           <a
