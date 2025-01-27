@@ -1,5 +1,16 @@
+import React, { useRef } from "react";
 import "./styles.css";
+
 export default function App() {
+  const audioRef = useRef(null); // Create a reference for the audio element
+
+  // Function to play the audio when the button is clicked
+  const handlePlayAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
   return (
     <div className="App">
       <div className="homepage-container">
@@ -12,7 +23,7 @@ export default function App() {
         <div className="title-container">
           <h1 className="title">Scrap Metals</h1>
           <h2 className="subtitle">
-            Please excuse us as we build the gallery. In the meantime, please
+            Please excuse me as I set up my gallery. In the meantime, please
             follow me on Instagram for updates!
           </h2>
           <a
@@ -31,7 +42,13 @@ export default function App() {
           </a>
         </div>
 
-        <audio autoPlay loop>
+        {/* Button to trigger audio */}
+        <button id="play-sound" onClick={handlePlayAudio}>
+          Play Sound
+        </button>
+
+        {/* Audio element with ref */}
+        <audio ref={audioRef} loop>
           <source
             src="/media/19 Can't Look Into My Eyes (feat. Kid Cudi).mp3"
             type="audio/mpeg"
