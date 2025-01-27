@@ -1,3 +1,3 @@
 # scrapmetals
 
-Website by Ben Sutter - [benwsutter.com](benwsutter.com)
+Website by Ben Sutter - benwsutter.com
