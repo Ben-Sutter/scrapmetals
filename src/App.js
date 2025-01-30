@@ -10,7 +10,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<EmailHolding />} />
           <Route path="/old" element={<HoldingPage />} />
-          <Route path="/wip-api" element={<WorkInProgress />} />
         </Routes>
       </div>
     </Router>

@@ -1,9 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles.css";
+
+const query = `
+{
+  holdingPageCollection {
+    items {
+      title
+      subtitle
+      backgroundImage {
+        url
+      }
+      instagramLinkText
+      instagramLink
+      song {
+        url
+      }
+    }
+  }
+}
+`;
 
 const EmailHolding = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [page, setPage] = useState(null);
+
+  useEffect(() => {
+    window
+      .fetch(`https://graphql.contentful.com/content/v1/spaces/yo7o7ewye8fk/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authenticate the request
+          Authorization: "Bearer 7u9LJMjJuU5shg2l6pq2q8xevM0x4YkwYJC-G2X-y8s",
+        },
+        // send the GraphQL query
+        body: JSON.stringify({ query }),
+      })
+      .then((response) => response.json())
+      .then(({ data, errors }) => {
+        if (errors) {
+          console.error(errors);
+        }
+
+        // rerender the entire component with new data
+        setPage(data.holdingPageCollection.items[0]);
+      });
+  }, []);
+
+  if (!page) {
+    return "Loading...";
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,12 +72,12 @@ const EmailHolding = () => {
       <div className="homepage-container">
         <img
           className="background-image"
-          src="/media/red-painting.jpeg"
+          src={page.backgroundImage.url}
           alt="Background"
         />
 
         <div className="title-container">
-          <h1 className="title-font">Scrap Metals</h1>
+          <h1 className="title-font">{page.title}</h1>
           <h2 className="subtitle-font">Excuse me as I set up my gallery</h2>
           <h2 className="subtitle-font">
             Please enter your email to recieve updates
@@ -65,7 +112,7 @@ const EmailHolding = () => {
           )}
           {/* Instagram Icon */}
           <a
-            href="https://www.instagram.com/scrap_metals_/"
+            href={page.instagramLink}
             target="_blank"
             rel="noopener noreferrer"
           >
