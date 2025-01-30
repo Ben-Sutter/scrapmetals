@@ -43,42 +43,70 @@ body {
   margin: 0;
 }
 
+.title-font {
+  font-size: 5rem;
+  margin: 0;
+  font-family: "UnifrakturMaguntia", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .subtitle {
   font-size: 1.5rem;
   margin: 0;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
+.subtitle-font {
+  font-size: 1rem;
+  margin: 0;
+  font-family: "New Rocker", serif;
+  font-weight: 200;
+  font-style: normal;
 }
-.instagram-text {
-  padding-top: ;
-  padding-left: 3%;
-  font-size: 1.5rem;
-  color: white;
-}
+
 .instagram-icon {
   width: 40px;
   height: 40px;
 }
-#play-sound {
-  position: fixed; /* Keep the button fixed on the screen */
-  bottom: 20px; /* 20px from the bottom of the viewport */
-  left: 50%; /* Center it horizontally */
-  transform: translateX(-50%); /* Correct the center alignment */
-  z-index: 1000; /* Ensure it's in front */
-  padding: 10px 20px;
-  background-color: #691717;
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.email-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.2s;
+}
+
+.email-input:focus {
+  border-color: #2b0b93;
+  color: white;
+  outline: none;
+}
+
+.email-button {
+  width: 100%;
+  padding: 10px;
+  background: #a3252f;
   color: white;
   font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-#play-sound:hover {
-  background-color: #45a049;
+.email-button:hover {
+  background: #d62839;
 }

@@ -30,27 +30,11 @@ const EmailHolding = () => {
         />
 
         <div className="title-container">
-          <h1 className="title">Scrap Metals</h1>
-          <h2 className="subtitle">
-            Please excuse me as I set up my gallery. In the meantime, please
-            follow me on Instagram for updates!
+          <h1 className="title-font">Scrap Metals</h1>
+          <h2 className="subtitle-font">Excuse me as I set up my gallery</h2>
+          <h2 className="subtitle-font">
+            Please enter your email to recieve updates
           </h2>
-
-          {/* Instagram Icon */}
-          <a
-            href="https://www.instagram.com/scrap_metals_/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="row">
-              <img
-                className="instagram-icon"
-                src="/icons/instagram-white-icon.webp"
-                alt="Instagram"
-              />
-            </div>
-          </a>
-
           {/* Email Signup Form */}
           {!submitted ? (
             <form
@@ -61,6 +45,7 @@ const EmailHolding = () => {
               onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="email-signup" />
+
               <input
                 type="email"
                 name="email"
@@ -68,12 +53,30 @@ const EmailHolding = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="email-input"
               />
-              <button type="submit">Join Email List</button>
+
+              <button type="submit" className="email-button">
+                Join Email List
+              </button>
             </form>
           ) : (
             <p>Thank you for signing up!</p>
           )}
+          {/* Instagram Icon */}
+          <a
+            href="https://www.instagram.com/scrap_metals_/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>
+              <img
+                className="instagram-icon"
+                src="/icons/instagram-white-icon.webp"
+                alt="Instagram"
+              />
+            </div>
+          </a>
         </div>
       </div>
     </div>
