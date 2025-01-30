@@ -14,6 +14,18 @@ body {
   height: 100vh;
 }
 
+@keyframes driftBackground {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate(-2%, 2%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
 .background-image {
   position: absolute;
   top: 0;
@@ -21,6 +33,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: driftBackground 20s infinite ease-in-out;
   z-index: 1;
 }
 
