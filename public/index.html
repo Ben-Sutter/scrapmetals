@@ -39,7 +39,13 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
-    <form name="email-signup" method="POST" netlify hidden>
+    <form
+      name="email-signup"
+      action="/email-submitted"
+      method="POST"
+      netlify
+      hidden
+    >
       <input type="email" name="email" />
     </form>
   </body>

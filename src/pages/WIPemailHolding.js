@@ -40,10 +40,10 @@ const EmailHolding = () => {
           {!submitted ? (
             <form
               name="email-signup"
+              action="/email-submitted"
               method="POST"
               data-netlify="true"
               className="email-form"
-              onSubmit={() => setSubmitted(true)} // No preventDefault()
             >
               <input type="hidden" name="form-name" value="email-signup" />
               <input
