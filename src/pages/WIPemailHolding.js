@@ -5,6 +5,21 @@ const EmailHolding = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const myForm = event.target;
+    const formData = new FormData(myForm);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => setSubmitted(true))
+      .catch((error) => alert(error));
+  };
+
   return (
     <div className="App">
       <div className="homepage-container">
@@ -40,10 +55,10 @@ const EmailHolding = () => {
           {!submitted ? (
             <form
               name="email-signup"
-              action="/email-submitted"
               method="POST"
               data-netlify="true"
               className="email-form"
+              onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="email-signup" />
               <input
