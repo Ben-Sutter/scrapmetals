@@ -27,12 +27,12 @@ const EmailHolding = () => {
 
   useEffect(() => {
     window
-      .fetch(`https://graphql.contentful.com/content/v1/spaces/yo7o7ewye8fk/`, {
+      .fetch(`https://graphql.contentful.com/content/v1/spaces/CMS_SPACE_ID/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           // Authenticate the request
-          Authorization: "Bearer 7u9LJMjJuU5shg2l6pq2q8xevM0x4YkwYJC-G2X-y8s",
+          Authorization: "Bearer CONTENTFUL_API_TOKEN",
         },
         // send the GraphQL query
         body: JSON.stringify({ query }),
