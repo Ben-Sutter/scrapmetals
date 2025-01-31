@@ -7,10 +7,13 @@ const query = `
     items {
       title
       subtitle
+      message
       backgroundImage {
         url
       }
-      instagramLinkText
+      instagramLinkImage {
+        url
+      }
       instagramLink
       song {
         url
@@ -27,16 +30,19 @@ const EmailHolding = () => {
 
   useEffect(() => {
     window
-      .fetch(`https://graphql.contentful.com/content/v1/spaces/CMS_SPACE_ID/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Authenticate the request
-          Authorization: "Bearer CONTENTFUL_API_TOKEN",
-        },
-        // send the GraphQL query
-        body: JSON.stringify({ query }),
-      })
+      .fetch(
+        `https://graphql.contentful.com/content/v1/spaces/${process.env.REACT_APP_CMS_SPACE_ID}/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Authenticate the request
+            Authorization: `Bearer ${process.env.REACT_APP_CMS_API_TOKEN}`,
+          },
+          // send the GraphQL query
+          body: JSON.stringify({ query }),
+        }
+      )
       .then((response) => response.json())
       .then(({ data, errors }) => {
         if (errors) {
@@ -78,10 +84,8 @@ const EmailHolding = () => {
 
         <div className="title-container">
           <h1 className="title-font">{page.title}</h1>
-          <h2 className="subtitle-font">Excuse me as I set up my gallery</h2>
-          <h2 className="subtitle-font">
-            Please enter your email to recieve updates
-          </h2>
+          <h2 className="subtitle-font">{page.subtitle}</h2>
+          <h2 className="subtitle-font">{page.message}</h2>
           {/* Email Signup Form */}
           {!submitted ? (
             <form
@@ -119,7 +123,7 @@ const EmailHolding = () => {
             <div>
               <img
                 className="instagram-icon"
-                src="/icons/instagram-white-icon.webp"
+                src={page.instagramLinkImage.url}
                 alt="Instagram"
               />
             </div>
