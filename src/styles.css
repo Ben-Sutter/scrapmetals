@@ -50,7 +50,13 @@ body {
   padding: 30px;
   border-radius: 10px;
 }
-
+.title-image {
+  width: 120px; /* Adjust the size as needed */
+  height: auto;
+  margin-right: -35px; /* Adjust the spacing as needed */
+  margin-bottom: -20px;
+  margin-left: -10px;
+}
 .title {
   font-size: 4rem;
   margin: 0;
@@ -62,6 +68,7 @@ body {
   font-family: "UnifrakturMaguntia", serif;
   font-weight: 400;
   font-style: normal;
+  text-align: center;
 }
 
 .subtitle {

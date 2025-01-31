@@ -83,7 +83,7 @@ const EmailHolding = () => {
         />
 
         <div className="title-container">
-          <h1 className="title-font">{page.title}</h1>
+          <h1 className="title-font"><img src="/SImage.png" alt="S" className="title-image" />{page.title.slice(1)}</h1>
           <h2 className="subtitle-font">{page.subtitle}</h2>
           <h2 className="subtitle-font">{page.message}</h2>
           {/* Email Signup Form */}
