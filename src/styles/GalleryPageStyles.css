@@ -19,13 +19,17 @@
   .gallery-item-container {
     border: 1px solid #ccc;
     padding: 16px;
-    width: 400px; /* Increase the width */
+    width: 600px; /* Increase the width */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .gallery-item-image {
     width: 100%; /* Make the image take the full width of the container */
-    height: 500px; /* Set a fixed height */
+    height: auto; /* Let the height adjust automatically */
+    max-height: 800px; /* Set a maximum height */
     object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
   }
   

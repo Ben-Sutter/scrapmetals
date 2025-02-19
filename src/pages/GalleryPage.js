@@ -1,4 +1,3 @@
-// filepath: /Users/bensutter/SOF_WEBSITE/scrapmetals/src/pages/GalleryPage.js
 import React, { useState, useEffect } from "react";
 import GalleryItem from "../components/GalleryItem";
 import "../styles/GalleryPageStyles.css";
