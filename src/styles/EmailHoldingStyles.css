@@ -19,7 +19,7 @@ body {
     transform: scale(1) translate(0, 0);
   }
   50% {
-    transform: scale(1.05) translate(-2%, 2%);
+    transform: scale(1.1) translate(-2%, 2%);
   }
   100% {
     transform: scale(1) translate(0, 0);
@@ -118,7 +118,7 @@ body {
 .email-button {
   width: 100%;
   padding: 10px;
-  background: #a3252f;
+  background: #67151c;
   color: white;
   font-size: 16px;
   border: none;
@@ -129,4 +129,33 @@ body {
 
 .email-button:hover {
   background: #d62839;
+}
+
+.gallery-page-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.gallery-item-container {
+  border: 1px solid #ccc;
+  padding: 16px;
+  width: 200px;
+  text-align: center;
+}
+
+.gallery-item-image {
+  width: 100%;
+  height: auto;
+}
+
+.gallery-item-title {
+  font-size: 1.2em;
+  margin: 8px 0;
+}
+
+.gallery-item-description {
+  font-size: 1em;
+  color: #666;
 }
