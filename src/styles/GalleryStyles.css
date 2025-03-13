@@ -1,0 +1,76 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.gallery-page-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.gallery-item-container {
+  margin: 16px;
+  width: 100%;
+  max-width: 600px; /* Adjust the width as needed */
+}
+
+.gallery-item-image {
+  width: 100%; /* Make the image take the full width of the container */
+  height: auto; /* Let the height adjust automatically */
+  max-height: 800px; /* Set a maximum height */
+  object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
+}
+
+.gallery-item-title {
+  font-size: 1.5em; /* Increase the font size */
+  margin: 8px 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+  color: #333; /* Change text color */
+}
+
+.gallery-item-page-container {
+  padding: 20px;
+}
+
+.gallery-item-page-image {
+  width: 100%; /* Make the image take the full width of the container */
+  height: auto; /* Let the height adjust automatically */
+  max-height: 800px; /* Set a maximum height */
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.gallery-item-page-title {
+  font-size: 2.5em; /* Increase the font size */
+  margin: 16px 0;
+  font-weight: bold;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Add text shadow */
+  color: #444; /* Change text color */
+  text-align: center; /* Center align the title */
+  text-transform: uppercase; /* Make the text uppercase */
+  letter-spacing: 2px; /* Add letter spacing */
+  background: linear-gradient(to right, #ff7e5f, #feb47b); /* Add gradient background */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  color: transparent; /* Make the text color transparent to show the gradient */
+}
+
+.gallery-item-page-description {
+  font-size: 1.2em; /* Adjust the font size */
+  line-height: 1.6; /* Increase line height for better readability */
+  color: #666; /* Change text color */
+  text-align: justify; /* Justify the text */
+  margin-top: 20px;
+  padding: 10px;
+  border-left: 4px solid #ff7e5f; /* Add a left border */
+  background-color: #f9f9f9; /* Add a background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+}

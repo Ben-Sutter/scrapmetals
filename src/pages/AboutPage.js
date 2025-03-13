@@ -54,21 +54,12 @@ const GalleryPage = () => {
   }
 
   return (
-    <div style={styles.galleryPageContainer}>
+    <div className="gallery-page-container">
       {items.map((item, index) => (
         <GalleryItem key={index} item={item} />
       ))}
     </div>
   );
-};
-
-const styles = {
-  galleryPageContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '16px',
-    justifyContent: 'center',
-  },
 };
 
 export default GalleryPage;
