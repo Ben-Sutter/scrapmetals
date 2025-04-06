@@ -81,13 +81,13 @@ const EmailHolding = () => {
   
           @keyframes driftBackground {
             0% {
-              transform: scale(1) translate(0, 0);
+              transform: scale(1.1) ;
             }
             50% {
-              transform: scale(1.1) translate(-2%, 2%);
+              transform: scale(2) rotate(22.5deg);
             }
             100% {
-              transform: scale(1) translate(0, 0);
+              transform: scale(1.1) ;
             }
           }
   
@@ -104,7 +104,7 @@ const EmailHolding = () => {
           }
   
           .background-image {
-            animation: driftBackground 20s infinite ease-in-out;
+            animation: driftBackground 40s infinite ease-in-out;
           }
   
           @media (max-width: 768px) {
@@ -293,15 +293,15 @@ const styles = {
   signatureInTitle: {
     position: 'absolute', // Position relative to the titleContainer
     bottom: '10px', // Adjust distance from the bottom
-    right: '10px', // Adjust distance from the right
-    width: '50px', // Keep the size consistent
+    right: '5px', // Adjust distance from the right
+    width: '45px', // Keep the size consistent
     height: 'auto',
     filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5))', // Add shadow
   },
 
   instagramIcon: {
-    width: '40px',
-    height: '40px',
+    width: '30px',
+    height: '30px',
     filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5))', // Add shadow
     transition: 'transform 0.2s', // Add hover effect
   },
