@@ -72,6 +72,13 @@ const EmailHolding = () => {
     <div style={styles.app}>
       <style>
         {`
+          @font-face {
+            font-family: 'CustomFont';
+            src: url('/fonts/CloisterBlack.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+          }
+  
           @keyframes driftBackground {
             0% {
               transform: scale(1) translate(0, 0);
@@ -83,7 +90,7 @@ const EmailHolding = () => {
               transform: scale(1) translate(0, 0);
             }
           }
-
+  
           @keyframes rotateBackground {
             0% {
               transform: scale(1);
@@ -95,7 +102,7 @@ const EmailHolding = () => {
               transform: scale(1);
             }
           }
-
+  
           @media (max-width: 768px) {
             .background-image {
               animation: rotateBackground 40s infinite linear !important;
@@ -111,11 +118,9 @@ const EmailHolding = () => {
           alt="Background"
         />
 
+        {/* Single Title Container */}
         <div style={styles.titleContainer}>
-          <h1 style={styles.titleFont}>
-            <img src="/SImage.png" alt="S" style={styles.titleImage} />
-            {page.title.slice(1)}
-          </h1>
+          <h1 style={styles.titleFont}>{page.title}</h1>
           <h2 style={styles.subtitleFont}>{page.subtitle}</h2>
           <h2 style={styles.subtitleFont}>{page.message}</h2>
           {!submitted ? (
@@ -145,19 +150,41 @@ const EmailHolding = () => {
           ) : (
             <p>Thank you for signing up!</p>
           )}
-          <a
-            href={page.instagramLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div>
+
+          {/* Align Play Button, Instagram Logo, and S Signature */}
+          <div style={styles.iconContainer}>
+            <button
+              style={styles.playButtonInTitle}
+              onClick={() => {
+                const audio = document.getElementById('audio-player');
+                if (audio) {
+                  audio.play();
+                }
+              }}
+            >
+              ▶
+            </button>
+
+            <a
+              href={page.instagramLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.logoLink}
+            >
               <img
                 style={styles.instagramIcon}
                 src={page.instagramLinkImage.url}
                 alt="Instagram"
               />
-            </div>
-          </a>
+            </a>
+            <img
+              src="/SImage.png"
+              alt="S"
+              style={styles.signatureInTitle}
+            />
+
+            <audio id="audio-player" src="/PaintingWithFire.m4a" />
+          </div>
         </div>
       </div>
     </div>
@@ -197,17 +224,35 @@ const styles = {
     padding: '30px',
     borderRadius: '10px',
   },
-  titleImage: {
-    width: '120px',
-    height: 'auto',
-    marginRight: '-35px',
-    marginBottom: '-20px',
-    marginLeft: '-10px',
+  iconContainer: {
+    display: 'flex', // Use flexbox for alignment
+    justifyContent: 'center', // Center horizontally
+    alignItems: 'center', // Center vertically
+    gap: '20px', // Add spacing between elements
+    marginTop: '20px', // Add spacing from the title/subtitle
   },
+
+  playButtonInTitle: {
+    width: '30px',
+    height: '30px',
+    backgroundColor: '#660033', // Button background color
+    color: 'white', // Text color
+    fontSize: '15px', // Font size for the play icon
+    border: 'none', // Remove border
+    borderRadius: '50%', // Make it circular
+    cursor: 'pointer', // Pointer cursor on hover
+    display: 'flex', // Center the icon
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)', // Add shadow
+    transition: 'transform 0.2s', // Add hover effect
+  },
+
+
   titleFont: {
     fontSize: '5rem',
     margin: 0,
-    fontFamily: '"UnifrakturMaguntia", serif',
+    fontFamily: 'CustomFont, serif', // Use the custom font
     fontWeight: 400,
     fontStyle: 'normal',
     textAlign: 'center',
@@ -219,9 +264,34 @@ const styles = {
     fontWeight: 200,
     fontStyle: 'normal',
   },
+  logoContainer: {
+    position: 'absolute',
+    bottom: '20px', // Position at the bottom of the page
+    left: '50%',
+    transform: 'translateX(-50%)', // Center horizontally
+    display: 'flex',
+    gap: '20px', // Space between logos
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 3,
+  },
+
+  signatureInTitle: {
+    width: '60px', // Adjust size to fit nicely
+    height: 'auto',
+    filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5))', // Add shadow
+  },
+
   instagramIcon: {
     width: '40px',
     height: '40px',
+    filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5))', // Add shadow
+    transition: 'transform 0.2s', // Add hover effect
+  },
+
+  logoLink: {
+    display: 'inline-block',
+    transition: 'transform 0.2s', // Add hover effect
   },
   emailForm: {
     display: 'flex',
@@ -240,11 +310,12 @@ const styles = {
     borderRadius: '8px',
     fontSize: '16px',
     transition: 'border 0.2s',
+    color: 'white',
   },
   emailButton: {
     width: '100%',
     padding: '10px',
-    background: '#67151c',
+    background: '#660033',
     color: 'white',
     fontSize: '16px',
     border: 'none',
