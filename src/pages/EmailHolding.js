@@ -93,14 +93,18 @@ const EmailHolding = () => {
   
           @keyframes rotateBackground {
             0% {
-              transform: scale(1);
+              transform: scale(1.1);
             }
             50% {
-             transform: scale(2);
+             transform: scale(2.5) rotate(45deg);
             }
             100% {
-              transform: scale(1);
+              transform: scale(1.1);
             }
+          }
+  
+          .background-image {
+            animation: driftBackground 20s infinite ease-in-out;
           }
   
           @media (max-width: 768px) {
@@ -151,20 +155,8 @@ const EmailHolding = () => {
             <p>Thank you for signing up!</p>
           )}
 
-          {/* Align Play Button, Instagram Logo, and S Signature */}
-          <div style={styles.iconContainer}>
-            <button
-              style={styles.playButtonInTitle}
-              onClick={() => {
-                const audio = document.getElementById('audio-player');
-                if (audio) {
-                  audio.play();
-                }
-              }}
-            >
-              ▶
-            </button>
-
+          {/* Instagram link/icon centered above the S and play button */}
+          <div style={styles.instagramContainer}>
             <a
               href={page.instagramLink}
               target="_blank"
@@ -177,14 +169,44 @@ const EmailHolding = () => {
                 alt="Instagram"
               />
             </a>
-            <img
-              src="/SImage.png"
-              alt="S"
-              style={styles.signatureInTitle}
-            />
-
-            <audio id="audio-player" src="/PaintingWithFire.m4a" />
           </div>
+
+          {/* S image in the bottom-right */}
+          <img
+            src="/SImage.png"
+            alt="S"
+            style={styles.signatureInTitle}
+          />
+
+          {/* Play button in the bottom-left */}
+          <button
+            style={styles.playButtonInTitle}
+            onClick={() => {
+              const audio = document.getElementById('audio-player');
+              if (audio) {
+                audio.play();
+              }
+            }}
+          >
+            ▶
+          </button>
+        </div>
+
+        {/* Align Play Button, Instagram Logo, and S Signature */}
+        <div style={styles.iconContainer}>
+          <a
+            href={page.instagramLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.logoLink}
+          >
+            <img
+              style={styles.instagramIcon}
+              src={page.instagramLinkImage.url}
+              alt="Instagram"
+            />
+          </a>
+          <audio id="audio-player" src="/PaintingWithFire.m4a" />
         </div>
       </div>
     </div>
@@ -208,8 +230,7 @@ const styles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    animation: 'driftBackground 20s infinite ease-in-out',
-    zIndex: 1,
+    zIndex: 1, // Keep other styles
   },
   titleContainer: {
     position: 'absolute',
@@ -230,9 +251,13 @@ const styles = {
     alignItems: 'center', // Center vertically
     gap: '20px', // Add spacing between elements
     marginTop: '20px', // Add spacing from the title/subtitle
+    zIndex: 2,
   },
 
   playButtonInTitle: {
+    position: 'absolute', // Position relative to the titleContainer
+    bottom: '10px', // Adjust distance from the bottom
+    left: '10px', // Adjust distance from the left
     width: '30px',
     height: '30px',
     backgroundColor: '#660033', // Button background color
@@ -264,20 +289,12 @@ const styles = {
     fontWeight: 200,
     fontStyle: 'normal',
   },
-  logoContainer: {
-    position: 'absolute',
-    bottom: '20px', // Position at the bottom of the page
-    left: '50%',
-    transform: 'translateX(-50%)', // Center horizontally
-    display: 'flex',
-    gap: '20px', // Space between logos
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 3,
-  },
 
   signatureInTitle: {
-    width: '60px', // Adjust size to fit nicely
+    position: 'absolute', // Position relative to the titleContainer
+    bottom: '10px', // Adjust distance from the bottom
+    right: '10px', // Adjust distance from the right
+    width: '50px', // Keep the size consistent
     height: 'auto',
     filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.5))', // Add shadow
   },
