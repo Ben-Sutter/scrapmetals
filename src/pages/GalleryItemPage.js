@@ -1,7 +1,5 @@
-// filepath: /Users/bensutter/SOF_WEBSITE/scrapmetals/src/pages/GalleryItemPage.js
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/GalleryPageStyles.css";
 
 const GalleryItemPage = () => {
   const { title } = useParams();
@@ -49,12 +47,80 @@ const GalleryItemPage = () => {
   }
 
   return (
-    <div className="gallery-item-page-container">
-      <img src={item.picture.url} alt={item.title} className="gallery-item-page-image" />
-      <h1 className="gallery-item-page-title">{item.title}</h1>
-      <p className="gallery-item-page-description">{item.description}</p>
+    <div
+      style={{
+        ...styles.container,
+        backgroundImage: `url(${item.picture.url})`, // Set the background image
+      }}
+    >
+      <div style={styles.overlay}></div> {/* Add an overlay for better readability */}
+      <div style={styles.content}>
+        <img
+          src={item.picture.url}
+          alt={item.title}
+          style={styles.image}
+        />
+        <div style={styles.textContainer}>
+          <h1 style={styles.title}>{item.title}</h1>
+          <p style={styles.description}>{item.description}</p>
+        </div>
+      </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    position: 'relative', // Position relative for overlay
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '20px',
+    padding: '20px',
+    backgroundSize: '200%', // Zoom in the background image
+    backgroundPosition: 'center', // Center the background image
+    minHeight: '100vh', // Full viewport height
+    backgroundRepeat: 'no-repeat', // Prevent background repetition
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black overlay
+    zIndex: 1, // Place the overlay above the background
+  },
+  content: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '20px',
+    zIndex: 2, // Place the content above the overlay
+  },
+  image: {
+    width: '300px',
+    height: 'auto',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  },
+  textContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  },
+  title: {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#fff', // White text for better contrast
+    margin: 0,
+  },
+  description: {
+    fontSize: '1rem',
+    lineHeight: '1.5',
+    color: '#ddd', // Light gray text for readability
+  },
 };
 
 export default GalleryItemPage;
