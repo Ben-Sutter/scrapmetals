@@ -1,21 +1,10 @@
 import React from "react";
 import Gallery from "../components/Gallery";
 
-const MiniGalleryPage = () => {
-  return (
-    <div>
-      <Gallery galleryName="mini gallery" />
-    </div>
-  );
-};
-
-const styles = {
-  title: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    margin: '20px 0',
-  },
-};
+const MiniGalleryPage = () => (
+  <section className="mx-auto max-w-6xl p-5">
+    <Gallery galleryName="mini gallery" />
+  </section>
+);
 
 export default MiniGalleryPage;

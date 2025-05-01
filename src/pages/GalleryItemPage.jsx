@@ -1,126 +1,145 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const GalleryItemPage = () => {
   const { title } = useParams();
   const [item, setItem] = useState(null);
 
+  /* ── Contentful fetch ───────────────────────────── */
   useEffect(() => {
-    // Fetch the specific gallery item by title
     const query = `
-    {
-      galleryItemCollection(where: { title: "${title}" }) {
-        items {
-          title
-          picture {
-            url
+      {
+        galleryItemCollection(where: { title: "${title}" }, limit: 1) {
+          items {
+            title
+            picture { url }
+            description
+            dimensions
+            medium
+            price
+            year
           }
-          description
         }
       }
-    }
     `;
-
-    window
-      .fetch(
-        `https://graphql.contentful.com/content/v1/spaces/${import.meta.env.VITE_CMS_SPACE_ID}/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_CMS_API_TOKEN}`,
-          },
-          body: JSON.stringify({ query }),
-        }
-      )
-      .then((response) => response.json())
+    fetch(
+      `https://graphql.contentful.com/content/v1/spaces/${
+        import.meta.env.VITE_CMS_SPACE_ID
+      }/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_CMS_API_TOKEN}`,
+        },
+        body: JSON.stringify({ query }),
+      }
+    )
+      .then((r) => r.json())
       .then(({ data, errors }) => {
-        if (errors) {
-          console.error(errors);
-        }
+        if (errors) console.error(errors);
         setItem(data.galleryItemCollection.items[0]);
       });
   }, [title]);
 
-  if (!item) {
-    return "Loading...";
-  }
+  if (!item)
+    return (
+      <div className="flex h-screen items-center justify-center text-xl text-white">
+        Loading…
+      </div>
+    );
 
-  return (
-    <div
-      style={{
-        ...styles.container,
-        backgroundImage: `url(${item.picture.url})`, // Set the background image
-      }}
-    >
-      <div style={styles.overlay}></div> {/* Add an overlay for better readability */}
-      <div style={styles.content}>
-        <img
-          src={item.picture.url}
-          alt={item.title}
-          style={styles.image}
-        />
-        <div style={styles.textContainer}>
-          <h1 style={styles.title}>{item.title}</h1>
-          <p style={styles.description}>{item.description}</p>
+  const specs = [
+    { label: "Size", value: item.dimensions },
+    { label: "Medium", value: item.medium },
+    { label: "Year", value: item.year },
+  ].filter((s) => s.value);
+
+  const isGift = /^gift$/i.test(item.price);
+
+  /* ...imports & fetch logic stay the same... */
+
+return (
+  <section
+    className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-[length:200%]"
+    style={{ backgroundImage: `url(${item.picture.url})` }}
+  >
+    {/* dark overlay */}
+    <div className="absolute inset-0 -z-10 bg-black/80 backdrop-blur-sm" />
+
+    {/* wrapper */}
+    <div className="flex h-screen w-full items-center justify-center p-0 sm:p-4">
+      <div
+        className="
+          flex h-[90vh] w-full max-w-none sm:max-w-7xl
+          flex-col md:flex-row overflow-hidden
+          rounded-none sm:rounded-3xl
+          bg-white/10 backdrop-blur-lg
+          ring-0 shadow-none           /*  <-- no ring, no shadow */
+        "
+      >
+        {/* artwork (60%) */}
+        <div className="h-1/2 w-full overflow-hidden md:h-full md:w-3/5">
+          <img
+            src={item.picture.url}
+            alt={item.title}
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        {/* info (40%) */}
+        <div className="flex w-full flex-col justify-between overflow-hidden bg-white/10 p-6 sm:p-8 md:w-2/5">
+          {/* back link */}
+          <Link
+            to="/gallery"
+            className="mb-4 inline-flex items-center text-sm text-white hover:text-gray-300"
+          >
+            <ArrowLeft className="mr-1 h-4 w-4" /> Back to gallery
+          </Link>
+
+          {/* header */}
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white">
+              {item.title}
+            </h1>
+            {item.price && (
+              <span
+                className={`mt-2 inline-block rounded-full px-3 py-1 text-sm font-medium ${
+                  isGift ? "bg-fuchsia-600/90" : "bg-emerald-600/90"
+                }`}
+              >
+                {isGift ? "Gift" : item.price}
+              </span>
+            )}
+          </div>
+
+          {/* specs */}
+          {specs.length > 0 && (
+            <dl className="mt-6 grid grid-cols-[max-content_1fr] gap-y-2 text-sm text-gray-300">
+              {specs.map(({ label, value }) => (
+                <React.Fragment key={label}>
+                  <dt className="border-r border-gray-600 pr-2 font-semibold">
+                    {label}
+                  </dt>
+                  <dd className="pl-2 text-gray-100">{value}</dd>
+                </React.Fragment>
+              ))}
+            </dl>
+          )}
+
+          {/* description */}
+          {item.description && (
+            <div className="mt-6 grow overflow-auto prose prose-invert max-w-none text-gray-200">
+              <p className="whitespace-pre-line">{item.description}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
-  );
-};
+  </section>
+);
 
-const styles = {
-  container: {
-    position: 'relative', // Position relative for overlay
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '20px',
-    padding: '20px',
-    backgroundSize: '200%', // Zoom in the background image
-    backgroundPosition: 'center', // Center the background image
-    minHeight: '100vh', // Full viewport height
-    backgroundRepeat: 'no-repeat', // Prevent background repetition
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black overlay
-    zIndex: 1, // Place the overlay above the background
-  },
-  content: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '20px',
-    zIndex: 2, // Place the content above the overlay
-  },
-  image: {
-    width: '300px',
-    height: 'auto',
-    borderRadius: '10px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-  },
-  textContainer: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-  title: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#fff', // White text for better contrast
-    margin: 0,
-  },
-  description: {
-    fontSize: '1rem',
-    lineHeight: '1.5',
-    color: '#ddd', // Light gray text for readability
-  },
 };
 
 export default GalleryItemPage;

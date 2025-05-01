@@ -1,91 +1,56 @@
 import React from "react";
 
-const HomePage = () => {
-  return (
-    <div className="HomePage-Container">
-      <style>
-        {`
-          @font-face {
-            font-family: 'CustomFont';
-            src: url('/fonts/CloisterBlack.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-          }
+const HomePage = () => (
+  <div className="fixed inset-0 overflow-hidden">
+    {/* custom font + keyframes + utility helpers */}
+    <style>{`
+      @font-face {
+        font-family: 'CustomFont';
+        src: url('/fonts/CloisterBlack.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @keyframes driftBackground {
+        0%   { transform: scale(1.1); }
+        50%  { transform: scale(2) rotate(22.5deg); }
+        100% { transform: scale(1.1); }
+      }
+      @keyframes rotateBackground {
+        0%   { transform: scale(1.1); }
+        50%  { transform: scale(2.5) rotate(45deg); }
+        100% { transform: scale(1.1); }
+      }
 
-          @keyframes driftBackground {
-            0% {
-              transform: scale(1.1);
-            }
-            50% {
-              transform: scale(2) rotate(22.5deg);
-            }
-            100% {
-              transform: scale(1.1);
-            }
-          }
+      /* Tailwind-friendly helpers for the keyframes above */
+      .animate-drift   { animation: driftBackground 40s infinite ease-in-out; }
+      .animate-rotate  { animation: rotateBackground 40s infinite linear;     }
 
-          @keyframes rotateBackground {
-            0% {
-              transform: scale(1.1);
-            }
-            50% {
-              transform: scale(2.5) rotate(45deg);
-            }
-            100% {
-              transform: scale(1.1);
-            }
-          }
+      /* custom text shadow utility */
+      .text-glow { filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.7)); }
+    `}</style>
 
-          @media (max-width: 768px) {
-            .background-image {
-              animation: rotateBackground 40s infinite linear !important;
-            }
-          }
-        `}
-      </style>
+    {/* background image */}
+    <img
+      src="/images/greenBG.jpg"
+      alt="Background"
+      className="
+        absolute inset-0 -z-10 h-full w-full object-cover
+        animate-drift
+        max-[768px]:animate-rotate
+      "
+    />
 
-      {/* Background Image */}
-      <img
-        className="background-image"
-        src= "images/greenBG.jpg"
-        alt="Background"
-        style={styles.backgroundImage}
-      ></img>
-
-      {/* Title */}
-      <h1 className="HomePage-Title" style={styles.titleFont}>Scrap Metals</h1>
-    </div>
-  );
-};
-
-const styles = {
-  titleFont: {
-    position: 'absolute', // Allows positioning relative to the container
-    top: '50%', // Center vertically
-    right: '10px', // Align to the right with a 10px margin
-    transform: 'translateY(-50%)', // Adjust for vertical centering
-    fontSize: '10rem',
-    margin: 0,
-    fontFamily: 'CustomFont, serif', // Use the custom font
-    fontWeight: 800,
-    fontStyle: 'normal',
-    textAlign: 'right', // Align text to the right
-    color: 'white', // Ensure the text is visible on the background
-    textShadow: '10px 10px 5px rgba(0, 0, 0, 0.7)', // Add a shadow for better readability
-  },
-  backgroundImage: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    zIndex: -1, // Ensure the image is behind other content
-    
-    objectFit: 'cover',
-    backgroundPosition: 'center', // Center the image
-    backgroundRepeat: 'no-repeat', // Prevent the image from repeating
-    animation: 'driftBackground 40s infinite ease-in-out', // Apply the animation
-  },
-};
+    {/* headline */}
+    <h1 className="
+    absolute right-4 sm:right-10 top-1/2 -translate-y-1/2
+    font-[CustomFont] text-[20vw] sm:text-[12vw] lg:text-[10rem]
+    font-extrabold leading-none tracking-tight
+    text-right text-white text-glow select-none
+  "
+    >
+      Scrap<span className="block sm:inline">&nbsp;Metals</span>
+    </h1>
+  </div>
+);
 
 export default HomePage;

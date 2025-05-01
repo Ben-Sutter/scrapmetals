@@ -12,15 +12,17 @@ const NavBar = ({ isOpen, closeNav }) => {
   ];
 
   return (
-    <div
-      className="
+    <aside
+      className={`
         fixed top-0 left-0 h-screen w-64
-        bg-black p-5 shadow-md z-[999]
+        bg-black/70 backdrop-blur-md border-r border-white/20
+        shadow-2xl z-[950]
         transition-transform duration-300 ease-in-out
-      "
-      style={{ transform: isOpen ? "translateX(0)" : "translateX(-100%)" }}
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      `}
     >
-      <nav className="flex flex-col gap-2">
+      {/* push items below the hamburger */}
+      <nav className="flex flex-col gap-3 pt-24 px-4">
         {navItems.map((item, idx) => (
           <NavItem
             key={idx}
@@ -33,7 +35,7 @@ const NavBar = ({ isOpen, closeNav }) => {
           />
         ))}
       </nav>
-    </div>
+    </aside>
   );
 };
 

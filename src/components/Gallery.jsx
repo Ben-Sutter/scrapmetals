@@ -1,87 +1,34 @@
-import React, { useState, useEffect } from "react";
-import GalleryItem from "./GalleryItem";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Gallery = ({ galleryName }) => {
-  const [items, setItems] = useState([]);
-  const [backgroundImage, setBackgroundImage] = useState("");
+const GalleryItem = ({ item }) => (
+  <Link
+    to={`/gallery/${encodeURIComponent(item.title)}`}
+    className="block no-underline"
+  >
+    <div
+      className="
+        relative z-10 cursor-pointer overflow-hidden
+        /* mobile: edge-to-edge, no border/shadow */
+        rounded-none bg-transparent border-0 shadow-none
 
-  useEffect(() => {
-    const query = `
-      {
-        galleryCollection(where: { name: "${galleryName}" }, limit: 1) {
-          items {
-            itemsCollection {
-              items {
-                title
-                picture { url }
-                description
-              }
-            }
-          }
-        }
-      }
-    `;
-
-    fetch(
-      `https://graphql.contentful.com/content/v1/spaces/${
-        import.meta.env.VITE_CMS_SPACE_ID
-      }/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_CMS_API_TOKEN}`,
-        },
-        body: JSON.stringify({ query }),
-      }
-    )
-      .then((res) => res.json())
-      .then(({ data, errors }) => {
-        if (errors) {
-          console.error(errors);
-          return;
-        }
-        if (data.galleryCollection.items.length) {
-          const allItems = data.galleryCollection.items.flatMap(
-            (g) => g.itemsCollection.items
-          );
-          setItems(allItems);
-
-          // pick a random image for the blurred backdrop
-          const randomItem =
-            allItems[Math.floor(Math.random() * allItems.length)];
-          setBackgroundImage(randomItem.picture.url);
-        }
-      });
-  }, [galleryName]);
-
-  if (items.length === 0) {
-    return (
-      <div className="mt-12 text-center text-2xl font-bold text-gray-800">
-        Loading…
-      </div>
-    );
-  }
-
-  return (
-    <>
-      {/* blurred full-screen background */}
-      <div
-        className="fixed inset-0 -z-10 bg-center bg-cover after:absolute after:inset-0 after:bg-white/40 after:backdrop-blur-sm"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "300%", // custom size Tailwind doesn’t ship
-        }}
+        /* ≥ 640 px: bring back the card look */
+        sm:rounded-lg sm:bg-white sm:border sm:border-gray-200
+        sm:shadow-md sm:transition sm:duration-300 sm:ease-in-out
+        sm:hover:-translate-y-1 sm:hover:shadow-lg
+      "
+    >
+      <img
+        src={item.picture.url}
+        alt={item.title}
+        className="
+          block w-full h-auto
+          border-0             /* kill img border on phones */
+          sm:border-b sm:border-gray-300
+        "
       />
+    </div>
+  </Link>
+);
 
-      {/* gallery grid */}
-      <div className="relative mx-auto my-12 w-4/5 max-w-[1200px] grid grid-cols-1 sm:grid-cols-2 gap-5 rounded-lg bg-white/90 p-5 shadow-md">
-        {items.map((item, idx) => (
-          <GalleryItem key={idx} item={item} />
-        ))}
-      </div>
-    </>
-  );
-};
-
-export default Gallery;
+export default GalleryItem;
