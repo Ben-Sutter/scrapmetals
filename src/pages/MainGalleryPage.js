@@ -4,7 +4,6 @@ import Gallery from "../components/Gallery";
 const MainGalleryPage = () => {
   return (
     <div>
-      <h1 style={styles.title}>Main Gallery</h1>
       <Gallery galleryName="main gallery" />
     </div>
   );

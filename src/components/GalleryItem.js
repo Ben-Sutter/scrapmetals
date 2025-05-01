@@ -10,7 +10,6 @@ const GalleryItem = ({ item }) => {
           alt={item.title}
           style={styles.image}
         />
-        <h3 style={styles.title}>{item.title}</h3>
       </div>
     </Link>
   );
@@ -21,6 +20,9 @@ const styles = {
     textDecoration: 'none', // Remove underline from links
   },
   container: {
+    zIndex: 1, // Ensure the container is above the background image
+    position: 'relative', // Ensure the container does not block the link
+  cursor: 'pointer', // Add a pointer cursor to indicate it's clickable
     backgroundColor: 'white',
     border: '1px solid #ddd',
     borderRadius: '10px',

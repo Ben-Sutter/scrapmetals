@@ -67,7 +67,7 @@ const styles = {
   line: {
     width: '30px',
     height: '3px',
-    backgroundColor: '#333',
+    backgroundColor: '#FFF',
     borderRadius: '2px',
   },
   contentContainer: {

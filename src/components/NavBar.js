@@ -43,7 +43,7 @@ const styles = {
     left: 0,
     width: '250px', // Set the width of the sidebar
     height: '100vh', // Full height of the viewport
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Light gray with 80% opacity
+    backgroundColor: 'rgba(0, 0, 0, 1)', // Light gray with 80% opacity
     boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)', // Subtle shadow for depth
     padding: '20px', // Add padding around the content
     transform: 'translateX(-100%)', // Initially hidden
