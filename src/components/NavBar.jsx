@@ -35,6 +35,21 @@ const NavBar = ({ isOpen, closeNav }) => {
           />
         ))}
       </nav>
+
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+        <button
+          className="w-12 h-12 bg-[#660033] text-white text-lg font-bold rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform"
+          onClick={() => {
+            const audio = document.getElementById("audio-player");
+            if (audio) {
+              audio.play();
+            }
+          }}
+        >
+          ▶
+        </button>
+        <audio id="audio-player" src="/PaintingWithFire.m4a" />
+      </div>
     </aside>
   );
 };
