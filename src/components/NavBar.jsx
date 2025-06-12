@@ -8,7 +8,9 @@ const NavBar = ({ isOpen, closeNav }) => {
     { label: "Home", href: "/" },
     { label: "Gallery", href: "/gallery" },
     { label: "Minis", href: "/minis" },
+    { label: "Shop", href:"https://www.shopify.com"},
     { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" }
   ];
 
   return (

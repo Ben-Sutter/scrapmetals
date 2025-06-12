@@ -59,6 +59,7 @@ const AboutPage = () => {
           src:url('/fonts/CloisterBlack.ttf') format('truetype');
         }
         .font-gothic{font-family:'CustomFont',serif;}
+        .font-times { font-family: 'Times New Roman', Times, serif; }
       `}</style>
 
       <img
@@ -75,7 +76,7 @@ const AboutPage = () => {
           </h1>
           
           <div className="grid gap-10 md:grid-cols-2 items-center">
-            <div className="prose prose-lg max-w-none text-black flex flex-col justify-center">
+            <div className="prose prose-lg max-w-none text-black flex flex-col justify-center font-times">
               <div className="block md:hidden mb-8">
                 <div className="flex items-center justify-center px-4">
                   <img
@@ -86,6 +87,20 @@ const AboutPage = () => {
                 </div>
               </div>
               {documentToReactComponents(bio, renderOptions)}
+
+              {/* Instagram link centered under bio */}
+              <div className="flex justify-center mt-6">
+                <a
+                  href="https://www.instagram.com/scrap_metals_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-lg font-semibold text-black transition hover:text-pink-300"
+                >
+                  <svg viewBox="0 0 512 512" className="h-12 w-12 fill-current">
+                    <path d="M349.33 69.33H162.67A93.34 93.34 0 0 0 69.33 162.67v186.66A93.34 93.34 0 0 0 162.67 442h186.66A93.34 93.34 0 0 0 442 349.33V162.67A93.34 93.34 0 0 0 349.33 69.33zm-93.33 277a96 96 0 1 1 96-96 96 96 0 0 1-96 95.96ZM370.67 162a21.33 21.33 0 1 1 21.33-21.33A21.35 21.35 0 0 1 370.67 162Z" />
+                  </svg>
+                </a>
+              </div>
             </div>
 
             <div className="hidden md:flex items-center justify-center">
@@ -96,20 +111,6 @@ const AboutPage = () => {
               />
             </div>
           </div>
-        </div>
-
-        <div className="w-full pt-6 pb-4 px-6 sm:px-0">
-          <a
-            href="https://www.instagram.com/scrap_metals_/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 text-lg font-semibold text-white transition hover:text-pink-300"
-          >
-            <svg viewBox="0 0 512 512" className="h-6 w-6 fill-current">
-              <path d="M349.33 69.33H162.67A93.34 93.34 0 0 0 69.33 162.67v186.66A93.34 93.34 0 0 0 162.67 442h186.66A93.34 93.34 0 0 0 442 349.33V162.67A93.34 93.34 0 0 0 349.33 69.33zm-93.33 277a96 96 0 1 1 96-96 96 96 0 0 1-96 95.96ZM370.67 162a21.33 21.33 0 1 1 21.33-21.33A21.35 21.35 0 0 1 370.67 162Z" />
-            </svg>
-            @scrap_metals_
-          </a>
         </div>
       </div>
     </section>

@@ -47,7 +47,6 @@ const Gallery = ({ galleryName }) => {
           );
           setItems(allItems);
 
-          // pick a random image for the blurred backdrop
           const randomItem =
             allItems[Math.floor(Math.random() * allItems.length)];
           setBackgroundImage(randomItem.picture.url);
@@ -65,13 +64,11 @@ const Gallery = ({ galleryName }) => {
 
   return (
     <>
-      {/* blurred full-screen background */}
       <div
         className="fixed inset-0 -z-10 bg-center bg-cover after:absolute after:inset-0 after:bg-white/40 after:backdrop-blur-sm"
         style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "300%" }}
       />
 
-      {/* masonry gallery */}
       <div className="relative mx-auto my-12 w-4/5 max-w-[1200px] columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
         {items.map((item, idx) => (
           <div key={idx} className="break-inside-avoid">

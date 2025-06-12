@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 const GalleryItemPage = () => {
   const { title } = useParams();
   const [item, setItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   /* ── Contentful fetch ───────────────────────────── */
   useEffect(() => {
@@ -58,88 +59,102 @@ const GalleryItemPage = () => {
 
   const isGift = /^gift$/i.test(item.price);
 
-  /* ...imports & fetch logic stay the same... */
+  return (
+    <section
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-[length:200%]"
+      style={{ backgroundImage: `url(${item.picture.url})` }}
+    >
+      {/* dark overlay */}
+      <div className="absolute inset-0 -z-10 bg-black/80 backdrop-blur-sm" />
 
-return (
-  <section
-    className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-[length:200%]"
-    style={{ backgroundImage: `url(${item.picture.url})` }}
-  >
-    {/* dark overlay */}
-    <div className="absolute inset-0 -z-10 bg-black/80 backdrop-blur-sm" />
+      {/* wrapper */}
+      <div className="flex h-screen w-full items-center justify-center p-0 sm:p-4">
+        <div
+          className="
+            flex h-[90vh] w-full max-w-none sm:max-w-7xl
+            flex-col md:flex-row overflow-hidden
+            rounded-none sm:rounded-3xl
+            bg-white/10 backdrop-blur-lg
+            ring-0 shadow-none
+          "
+        >
+          {/* artwork (60%) */}
+          <div
+            className="h-1/2 w-full overflow-hidden md:h-full md:w-3/5 cursor-pointer"
+            onClick={() => setIsModalOpen(true)} // Open modal on click
+          >
+            <img
+              src={item.picture.url}
+              alt={item.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
 
-    {/* wrapper */}
-    <div className="flex h-screen w-full items-center justify-center p-0 sm:p-4">
-      <div
-        className="
-          flex h-[90vh] w-full max-w-none sm:max-w-7xl
-          flex-col md:flex-row overflow-hidden
-          rounded-none sm:rounded-3xl
-          bg-white/10 backdrop-blur-lg
-          ring-0 shadow-none           /*  <-- no ring, no shadow */
-        "
-      >
-        {/* artwork (60%) */}
-        <div className="h-1/2 w-full overflow-hidden md:h-full md:w-3/5">
+          {/* info (40%) */}
+          <div className="flex w-full flex-col justify-between overflow-hidden bg-white/10 p-6 sm:p-8 md:w-2/5">
+            {/* back link */}
+            <Link
+              to="/gallery"
+              className="mb-4 inline-flex items-center text-sm text-white hover:text-gray-300"
+            >
+              <ArrowLeft className="mr-1 h-4 w-4" /> Back to gallery
+            </Link>
+
+            {/* header */}
+            <div>
+              <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white">
+                {item.title}
+              </h1>
+              {item.price && (
+                <span
+                  className={`mt-2 inline-block rounded-full px-3 py-1 text-sm font-medium text-cyan-50 ${
+                    isGift ? "bg-[#660033]" : "bg-emerald-600/90"
+                  }`}
+                >
+                  {isGift ? "Gift" : item.price}
+                </span>
+              )}
+            </div>
+
+            {/* specs */}
+            {specs.length > 0 && (
+              <dl className="mt-6 grid grid-cols-[max-content_1fr] gap-y-2 text-sm text-gray-300">
+                {specs.map(({ label, value }) => (
+                  <React.Fragment key={label}>
+                    <dt className="border-r border-gray-600 pr-2 font-semibold">
+                      {label}
+                    </dt>
+                    <dd className="pl-2 text-gray-100">{value}</dd>
+                  </React.Fragment>
+                ))}
+              </dl>
+            )}
+
+            {/* description */}
+            {item.description && (
+              <div className="mt-6 grow overflow-auto prose prose-invert max-w-none text-gray-200">
+                <p className="whitespace-pre-line">{item.description}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Fullscreen Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/90"
+          onClick={() => setIsModalOpen(false)} // Close modal on click
+        >
           <img
             src={item.picture.url}
             alt={item.title}
-            className="h-full w-full object-cover"
+            className="max-h-full max-w-full object-contain"
           />
         </div>
-
-        {/* info (40%) */}
-        <div className="flex w-full flex-col justify-between overflow-hidden bg-white/10 p-6 sm:p-8 md:w-2/5">
-          {/* back link */}
-          <Link
-            to="/gallery"
-            className="mb-4 inline-flex items-center text-sm text-white hover:text-gray-300"
-          >
-            <ArrowLeft className="mr-1 h-4 w-4" /> Back to gallery
-          </Link>
-
-          {/* header */}
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white">
-              {item.title}
-            </h1>
-            {item.price && (
-              <span
-                className={`mt-2 inline-block rounded-full px-3 py-1 text-sm font-medium ${
-                  isGift ? "bg-fuchsia-600/90" : "bg-emerald-600/90"
-                }`}
-              >
-                {isGift ? "Gift" : item.price}
-              </span>
-            )}
-          </div>
-
-          {/* specs */}
-          {specs.length > 0 && (
-            <dl className="mt-6 grid grid-cols-[max-content_1fr] gap-y-2 text-sm text-gray-300">
-              {specs.map(({ label, value }) => (
-                <React.Fragment key={label}>
-                  <dt className="border-r border-gray-600 pr-2 font-semibold">
-                    {label}
-                  </dt>
-                  <dd className="pl-2 text-gray-100">{value}</dd>
-                </React.Fragment>
-              ))}
-            </dl>
-          )}
-
-          {/* description */}
-          {item.description && (
-            <div className="mt-6 grow overflow-auto prose prose-invert max-w-none text-gray-200">
-              <p className="whitespace-pre-line">{item.description}</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
+      )}
+    </section>
+  );
 };
 
 export default GalleryItemPage;
