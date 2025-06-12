@@ -5,9 +5,8 @@ import { ArrowLeft } from "lucide-react";
 const GalleryItemPage = () => {
   const { title } = useParams();
   const [item, setItem] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  /* ── Contentful fetch ───────────────────────────── */
   useEffect(() => {
     const query = `
       {
@@ -25,9 +24,7 @@ const GalleryItemPage = () => {
       }
     `;
     fetch(
-      `https://graphql.contentful.com/content/v1/spaces/${
-        import.meta.env.VITE_CMS_SPACE_ID
-      }/`,
+      `https://graphql.contentful.com/content/v1/spaces/${import.meta.env.VITE_CMS_SPACE_ID}/`,
       {
         method: "POST",
         headers: {
@@ -64,24 +61,14 @@ const GalleryItemPage = () => {
       className="relative min-h-screen bg-cover bg-center bg-no-repeat bg-[length:200%]"
       style={{ backgroundImage: `url(${item.picture.url})` }}
     >
-      {/* dark overlay */}
       <div className="absolute inset-0 -z-10 bg-black/80 backdrop-blur-sm" />
 
-      {/* wrapper */}
       <div className="flex h-screen w-full items-center justify-center p-0 sm:p-4">
-        <div
-          className="
-            flex h-[90vh] w-full max-w-none sm:max-w-7xl
-            flex-col md:flex-row overflow-hidden
-            rounded-none sm:rounded-3xl
-            bg-white/10 backdrop-blur-lg
-            ring-0 shadow-none
-          "
-        >
-          {/* artwork (60%) */}
+        <div className="flex h-[90vh] w-full max-w-none sm:max-w-7xl flex-col md:flex-row overflow-hidden rounded-none sm:rounded-3xl bg-white/10 backdrop-blur-lg ring-0 shadow-none">
+          {/* Image Section */}
           <div
             className="h-1/2 w-full overflow-hidden md:h-full md:w-3/5 cursor-pointer"
-            onClick={() => setIsModalOpen(true)} // Open modal on click
+            onClick={() => setIsModalOpen(true)}
           >
             <img
               src={item.picture.url}
@@ -90,9 +77,8 @@ const GalleryItemPage = () => {
             />
           </div>
 
-          {/* info (40%) */}
-          <div className="flex w-full flex-col justify-between overflow-hidden bg-white/10 p-6 sm:p-8 md:w-2/5">
-            {/* back link */}
+          {/* Info Section */}
+          <div className="flex w-full flex-col justify-between overflow-hidden bg-black/50 p-6 sm:p-8 md:w-2/5">
             <Link
               to="/gallery"
               className="mb-4 inline-flex items-center text-sm text-white hover:text-gray-300"
@@ -100,8 +86,7 @@ const GalleryItemPage = () => {
               <ArrowLeft className="mr-1 h-4 w-4" /> Back to gallery
             </Link>
 
-            {/* header */}
-            <div>
+            <div className="mb-6">
               <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white">
                 {item.title}
               </h1>
@@ -116,9 +101,8 @@ const GalleryItemPage = () => {
               )}
             </div>
 
-            {/* specs */}
             {specs.length > 0 && (
-              <dl className="mt-6 grid grid-cols-[max-content_1fr] gap-y-2 text-sm text-gray-300">
+              <dl className="grid grid-cols-[max-content_1fr] gap-y-2 text-sm text-gray-300">
                 {specs.map(({ label, value }) => (
                   <React.Fragment key={label}>
                     <dt className="border-r border-gray-600 pr-2 font-semibold">
@@ -130,7 +114,6 @@ const GalleryItemPage = () => {
               </dl>
             )}
 
-            {/* description */}
             {item.description && (
               <div className="mt-6 grow overflow-auto prose prose-invert max-w-none text-gray-200">
                 <p className="whitespace-pre-line">{item.description}</p>
@@ -140,11 +123,10 @@ const GalleryItemPage = () => {
         </div>
       </div>
 
-      {/* Fullscreen Modal */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/90"
-          onClick={() => setIsModalOpen(false)} // Close modal on click
+          onClick={() => setIsModalOpen(false)}
         >
           <img
             src={item.picture.url}

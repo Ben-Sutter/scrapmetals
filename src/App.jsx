@@ -7,6 +7,7 @@ import MainGalleryPage from "./pages/MainGalleryPage";
 import MiniGalleryPage from "./pages/MiniGalleryPage";
 import AboutPage from "./pages/AboutPage";
 import GalleryItemPage from "./pages/GalleryItemPage";
+import ContactPage from "./pages/ContactPage";
 
 const App = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/minis" element={<MiniGalleryPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/gallery/:title" element={<GalleryItemPage />} />
+            <Route path="/contact" element={<ContactPage/>}/>;
           </Routes>
         </main>
       </div>
