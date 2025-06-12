@@ -18,8 +18,7 @@ const AboutPage = () => {
     `;
 
     fetch(
-      `https://graphql.contentful.com/content/v1/spaces/${
-        import.meta.env.VITE_CMS_SPACE_ID
+      `https://graphql.contentful.com/content/v1/spaces/${import.meta.env.VITE_CMS_SPACE_ID
       }/`,
       {
         method: "POST",
@@ -74,21 +73,17 @@ const AboutPage = () => {
           <h1 className="mb-8 font-gothic text-5xl sm:text-6xl font-bold text-center text-black">
             scrap&nbsp;metals
           </h1>
-          
+
           <div className="grid gap-10 md:grid-cols-2 items-center">
-            <div className="prose prose-lg max-w-none text-black flex flex-col justify-center font-times">
-              <div className="block md:hidden mb-8">
-                <div className="flex items-center justify-center px-4">
-                  <img
-                    src={picUrl}
-                    alt="Portrait"
-                    className="w-full h-auto max-w-[85%] rounded-2xl"
-                  />
-                </div>
-              </div>
+            {/* Bio Section */}
+            <div className="prose prose-lg max-w-none text-black font-times">
+              <img
+                src={picUrl}
+                alt="Portrait"
+                className="block md:hidden mb-8 mx-auto w-full h-auto max-w-[85%] rounded-2xl"
+              />
               {documentToReactComponents(bio, renderOptions)}
 
-              {/* Instagram link centered under bio */}
               <div className="flex justify-center mt-6">
                 <a
                   href="https://www.instagram.com/scrap_metals_/"
@@ -103,6 +98,7 @@ const AboutPage = () => {
               </div>
             </div>
 
+            {/* Portrait Section */}
             <div className="hidden md:flex items-center justify-center">
               <img
                 src={picUrl}
@@ -110,6 +106,14 @@ const AboutPage = () => {
                 className="w-full h-auto max-w-sm rounded-2xl"
               />
             </div>
+          </div>
+
+          <div className="flex justify-center mt-20">
+            <img
+              src="/SImage.png"
+              alt="S Image"
+              className="w-auto h-auto max-w-[100px] filter invert" // Added filter invert
+            />
           </div>
         </div>
       </div>

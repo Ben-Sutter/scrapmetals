@@ -65,7 +65,7 @@ const Gallery = ({ galleryName }) => {
   return (
     <>
       <div
-        className="fixed inset-0 -z-10 bg-center bg-cover after:absolute after:inset-0 after:bg-white/40 after:backdrop-blur-sm"
+        className="fixed inset-0 -z-10 bg-center bg-cover after:absolute after:inset-0"
         style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "300%" }}
       />
 

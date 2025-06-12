@@ -35,7 +35,7 @@ Please change the parent <Route path="${d}"> to <Route path="${d==="/"?"*":`${d}
       block rounded-md px-4 py-2 text-lg font-semibold tracking-wide
       transition-all duration-200
       ${n?"bg-[#660033] text-white shadow-inner":"text-white/80 hover:text-white hover:bg-[rgba(170,0,102,0.5)]"}
-    `},e),Th=({isOpen:e,closeNav:t})=>{const[n,r]=v.useState(0),l=[{label:"Home",href:"/"},{label:"Gallery",href:"/gallery"},{label:"Minis",href:"/minis"},{label:"Shop",href:"https://www.shopify.com"},{label:"About",href:"/about"}];return L.createElement("aside",{className:`
+    `},e),Th=({isOpen:e,closeNav:t})=>{const[n,r]=v.useState(0),l=[{label:"Home",href:"/"},{label:"Gallery",href:"/gallery"},{label:"Minis",href:"/minis"},{label:"Shop",href:"https://www.shopify.com"},{label:"About",href:"/about"},{label:"Contact",href:"/contact"}];return L.createElement("aside",{className:`
         fixed top-0 left-0 h-screen w-64
         bg-black/70 backdrop-blur-md border-r border-white/20
         shadow-2xl z-[950]
@@ -65,20 +65,20 @@ Please change the parent <Route path="${d}"> to <Route path="${d==="/"?"*":`${d}
 
       /* custom text shadow utility */
       .text-glow { filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.7)); }
-    `),L.createElement("img",{src:"/images/greenBG.jpg",alt:"Background",className:`
-        absolute inset-0 -z-10 h-full w-full object-cover
-        animate-drift
-        max-[768px]:animate-rotate
-      `}),L.createElement("h1",{className:`
-    absolute right-4 sm:right-10 top-1/2 -translate-y-1/2
-    font-[CustomFont] text-[20vw] sm:text-[12vw] lg:text-[10rem]
-    font-extrabold leading-none tracking-tight
-    text-right text-white text-glow select-none
-  `},"Scrap",L.createElement("span",{className:"block sm:inline"}," Metals"))),Oh=({item:e})=>L.createElement(Ar,{to:`/gallery/${encodeURIComponent(e.title)}`,className:"block no-underline"},L.createElement("div",{className:`
-        relative z-10 cursor-pointer bg-white border border-gray-200
-        rounded-lg shadow-md overflow-hidden text-center
-        transition-transform duration-300 ease-in-out
-        hover:-translate-y-1 hover:shadow-lg
+    `),L.createElement("img",{src:"/images/greenBG.jpg",alt:"Background",className:`\r
+        absolute inset-0 -z-10 h-full w-full object-cover\r
+        animate-drift\r
+        max-[768px]:animate-rotate\r
+      `}),L.createElement("h1",{className:`\r
+    absolute right-4 sm:right-10 top-1/2 -translate-y-1/2\r
+    font-[CustomFont] text-[20vw] sm:text-[12vw] lg:text-[10rem]\r
+    font-extrabold leading-none tracking-tight\r
+    text-right text-white text-glow select-none\r
+  `},"Scrap",L.createElement("span",{className:"block sm:inline"}," Metals"))),Oh=({item:e})=>L.createElement(Ar,{to:`/gallery/${encodeURIComponent(e.title)}`,className:"block no-underline"},L.createElement("div",{className:`\r
+        relative z-10 cursor-pointer bg-white border border-gray-200\r
+        rounded-lg shadow-md overflow-hidden text-center\r
+        transition-transform duration-300 ease-in-out\r
+        hover:-translate-y-1 hover:shadow-lg\r
       `},L.createElement("img",{src:e.picture.url,alt:e.title,className:"w-full h-auto block border-b border-gray-300"}))),wf=({galleryName:e})=>{const[t,n]=v.useState([]),[r,l]=v.useState("");return v.useEffect(()=>{const o=`
       {
         galleryCollection(where: { name: "${e}" }, limit: 1) {
@@ -112,7 +112,7 @@ Please change the parent <Route path="${d}"> to <Route path="${d==="/"?"*":`${d}
         }
         .font-gothic{font-family:'CustomFont',serif;}
         .font-times { font-family: 'Times New Roman', Times, serif; }
-      `),L.createElement("img",{src:"/images/redBG.jpg",alt:"",className:"absolute inset-0 -z-20 h-full w-full object-cover"}),L.createElement("div",{className:"absolute inset-0 -z-10 bg-gradient-to-br from-black/80 via-black/60 to-black/40 backdrop-blur-md"}),L.createElement("div",{className:"flex h-full flex-col items-center justify-center p-0 sm:px-4 sm:py-12"},L.createElement("div",{className:"w-full h-full max-w-none sm:max-w-6xl bg-white/80 backdrop-blur-lg rounded-none sm:rounded-3xl p-6 sm:p-10 shadow-none overflow-y-auto"},L.createElement("h1",{className:"mb-8 font-gothic text-5xl sm:text-6xl font-bold text-center text-black"},"scrap metals"),L.createElement("div",{className:"grid gap-10 md:grid-cols-2 items-center"},L.createElement("div",{className:"prose prose-lg max-w-none text-black flex flex-col justify-center font-times"},L.createElement("div",{className:"block md:hidden mb-8"},L.createElement("div",{className:"flex items-center justify-center px-4"},L.createElement("img",{src:n,alt:"Portrait",className:"w-full h-auto max-w-[85%] rounded-2xl"}))),Hh(e,l),L.createElement("div",{className:"flex justify-center mt-6"},L.createElement("a",{href:"https://www.instagram.com/scrap_metals_/",target:"_blank",rel:"noopener noreferrer",className:"flex items-center gap-2 text-lg font-semibold text-black transition hover:text-pink-300"},L.createElement("svg",{viewBox:"0 0 512 512",className:"h-12 w-12 fill-current"},L.createElement("path",{d:"M349.33 69.33H162.67A93.34 93.34 0 0 0 69.33 162.67v186.66A93.34 93.34 0 0 0 162.67 442h186.66A93.34 93.34 0 0 0 442 349.33V162.67A93.34 93.34 0 0 0 349.33 69.33zm-93.33 277a96 96 0 1 1 96-96 96 96 0 0 1-96 95.96ZM370.67 162a21.33 21.33 0 1 1 21.33-21.33A21.35 21.35 0 0 1 370.67 162Z"}))))),L.createElement("div",{className:"hidden md:flex items-center justify-center"},L.createElement("img",{src:n,alt:"Portrait",className:"w-full h-auto max-w-sm rounded-2xl"}))))))};/**
+      `),L.createElement("img",{src:"/images/redBG.jpg",alt:"",className:"absolute inset-0 -z-20 h-full w-full object-cover"}),L.createElement("div",{className:"absolute inset-0 -z-10 bg-gradient-to-br from-black/80 via-black/60 to-black/40 backdrop-blur-md"}),L.createElement("div",{className:"flex h-full flex-col items-center justify-center p-0 sm:px-4 sm:py-12"},L.createElement("div",{className:"w-full h-full max-w-none sm:max-w-6xl bg-white/80 backdrop-blur-lg rounded-none sm:rounded-3xl p-6 sm:p-10 shadow-none overflow-y-auto"},L.createElement("h1",{className:"mb-8 font-gothic text-5xl sm:text-6xl font-bold text-center text-black"},"scrap metals"),L.createElement("div",{className:"grid gap-10 md:grid-cols-2 items-center"},L.createElement("div",{className:"prose prose-lg max-w-none text-black flex flex-col justify-center font-times"},L.createElement("div",{className:"block md:hidden mb-8"},L.createElement("div",{className:"flex items-center justify-center px-4"},L.createElement("img",{src:n,alt:"Portrait",className:"w-full h-auto max-w-[85%] rounded-2xl"}))),Hh(e,l),L.createElement("img",{src:"/SImage.png",alt:"S",style:styles.signatureInTitle}),L.createElement("div",{className:"flex justify-center mt-6"},L.createElement("a",{href:"https://www.instagram.com/scrap_metals_/",target:"_blank",rel:"noopener noreferrer",className:"flex items-center gap-2 text-lg font-semibold text-black transition hover:text-pink-300"},L.createElement("svg",{viewBox:"0 0 512 512",className:"h-12 w-12 fill-current"},L.createElement("path",{d:"M349.33 69.33H162.67A93.34 93.34 0 0 0 69.33 162.67v186.66A93.34 93.34 0 0 0 162.67 442h186.66A93.34 93.34 0 0 0 442 349.33V162.67A93.34 93.34 0 0 0 349.33 69.33zm-93.33 277a96 96 0 1 1 96-96 96 96 0 0 1-96 95.96ZM370.67 162a21.33 21.33 0 1 1 21.33-21.33A21.35 21.35 0 0 1 370.67 162Z"}))))),L.createElement("div",{className:"hidden md:flex items-center justify-center"},L.createElement("img",{src:n,alt:"Portrait",className:"w-full h-auto max-w-sm rounded-2xl"}))))))};/**
  * @license lucide-react v0.503.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -151,10 +151,10 @@ Please change the parent <Route path="${d}"> to <Route path="${d==="/"?"*":`${d}
           }
         }
       }
-    `;fetch("https://graphql.contentful.com/content/v1/spaces/yo7o7ewye8fk/",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer DteD89m4ku822eFtf85BAcevKSIPQ0eZ0aIZ1kjot-I"},body:JSON.stringify({query:u})}).then(a=>a.json()).then(({data:a,errors:s})=>{s&&console.error(s),n(a.galleryItemCollection.items[0])})},[e]),!t)return L.createElement("div",{className:"flex h-screen items-center justify-center text-xl text-white"},"Loading…");const o=[{label:"Size",value:t.dimensions},{label:"Medium",value:t.medium},{label:"Year",value:t.year}].filter(u=>u.value),i=/^gift$/i.test(t.price);return L.createElement("section",{className:"relative min-h-screen bg-cover bg-center bg-no-repeat bg-[length:200%]",style:{backgroundImage:`url(${t.picture.url})`}},L.createElement("div",{className:"absolute inset-0 -z-10 bg-black/80 backdrop-blur-sm"}),L.createElement("div",{className:"flex h-screen w-full items-center justify-center p-0 sm:p-4"},L.createElement("div",{className:`
-            flex h-[90vh] w-full max-w-none sm:max-w-7xl
-            flex-col md:flex-row overflow-hidden
-            rounded-none sm:rounded-3xl
-            bg-white/10 backdrop-blur-lg
-            ring-0 shadow-none
+    `;fetch("https://graphql.contentful.com/content/v1/spaces/yo7o7ewye8fk/",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer DteD89m4ku822eFtf85BAcevKSIPQ0eZ0aIZ1kjot-I"},body:JSON.stringify({query:u})}).then(a=>a.json()).then(({data:a,errors:s})=>{s&&console.error(s),n(a.galleryItemCollection.items[0])})},[e]),!t)return L.createElement("div",{className:"flex h-screen items-center justify-center text-xl text-white"},"Loading…");const o=[{label:"Size",value:t.dimensions},{label:"Medium",value:t.medium},{label:"Year",value:t.year}].filter(u=>u.value),i=/^gift$/i.test(t.price);return L.createElement("section",{className:"relative min-h-screen bg-cover bg-center bg-no-repeat bg-[length:200%]",style:{backgroundImage:`url(${t.picture.url})`}},L.createElement("div",{className:"absolute inset-0 -z-10 bg-black/80 backdrop-blur-sm"}),L.createElement("div",{className:"flex h-screen w-full items-center justify-center p-0 sm:p-4"},L.createElement("div",{className:`\r
+            flex h-[90vh] w-full max-w-none sm:max-w-7xl\r
+            flex-col md:flex-row overflow-hidden\r
+            rounded-none sm:rounded-3xl\r
+            bg-white/10 backdrop-blur-lg\r
+            ring-0 shadow-none\r
           `},L.createElement("div",{className:"h-1/2 w-full overflow-hidden md:h-full md:w-3/5 cursor-pointer",onClick:()=>l(!0)},L.createElement("img",{src:t.picture.url,alt:t.title,className:"h-full w-full object-cover"})),L.createElement("div",{className:"flex w-full flex-col justify-between overflow-hidden bg-white/10 p-6 sm:p-8 md:w-2/5"},L.createElement(Ar,{to:"/gallery",className:"mb-4 inline-flex items-center text-sm text-white hover:text-gray-300"},L.createElement(Xh,{className:"mr-1 h-4 w-4"})," Back to gallery"),L.createElement("div",null,L.createElement("h1",{className:"text-3xl sm:text-4xl font-semibold tracking-tight text-white"},t.title),t.price&&L.createElement("span",{className:`mt-2 inline-block rounded-full px-3 py-1 text-sm font-medium text-cyan-50 ${i?"bg-[#660033]":"bg-emerald-600/90"}`},i?"Gift":t.price)),o.length>0&&L.createElement("dl",{className:"mt-6 grid grid-cols-[max-content_1fr] gap-y-2 text-sm text-gray-300"},o.map(({label:u,value:a})=>L.createElement(L.Fragment,{key:u},L.createElement("dt",{className:"border-r border-gray-600 pr-2 font-semibold"},u),L.createElement("dd",{className:"pl-2 text-gray-100"},a)))),t.description&&L.createElement("div",{className:"mt-6 grow overflow-auto prose prose-invert max-w-none text-gray-200"},L.createElement("p",{className:"whitespace-pre-line"},t.description))))),r&&L.createElement("div",{className:"fixed inset-0 z-[1000] flex items-center justify-center bg-black/90",onClick:()=>l(!1)},L.createElement("img",{src:t.picture.url,alt:t.title,className:"max-h-full max-w-full object-contain"})))},Jh=()=>{const[e,t]=v.useState(!1);return L.createElement(gh,null,L.createElement("div",{className:"flex min-h-screen"},L.createElement("button",{onClick:()=>t(n=>!n),className:"fixed top-5 left-5 z-[999] flex flex-col gap-1.5 p-2 rounded-md bg-black/20 backdrop-blur-sm transition hover:bg-black/30"},Array.from({length:3}).map((n,r)=>L.createElement("span",{key:r,className:"block h-0.5 w-8 rounded bg-white shadow-[0_0_6px_rgba(0,0,0,0.95)]"}))),L.createElement(Th,{isOpen:e,closeNav:()=>t(!1)}),L.createElement("main",{className:"flex-1 overflow-y-auto p-0"},L.createElement(Ym,null,L.createElement(on,{path:"/",element:L.createElement(Ph,null)}),L.createElement(on,{path:"/gallery",element:L.createElement(Ih,null)}),L.createElement(on,{path:"/minis",element:L.createElement(Dh,null)}),L.createElement(on,{path:"/about",element:L.createElement(Uh,null)}),L.createElement(on,{path:"/gallery/:title",element:L.createElement(Zh,null)})))))},qh=document.getElementById("root"),bh=rf(qh);bh.render(L.createElement(v.StrictMode,null,L.createElement(Jh,null)));
